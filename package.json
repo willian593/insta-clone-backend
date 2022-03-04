@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "dev": ""
+    "dev": "nodemon --exec npx babel-node server",
+    "migrate": "npx prisma migrate dev",
+    "studio": "npx prisma studio"
   },
   "repository": {
     "type": "git",
@@ -15,5 +17,20 @@
   "bugs": {
     "url": "https://github.com/willian593/insta-clone-backend/issues"
   },
-  "homepage": "https://github.com/willian593/insta-clone-backend#readme"
+  "homepage": "https://github.com/willian593/insta-clone-backend#readme",
+  "dependencies": {
+    "@graphql-tools/load-files": "^6.5.3",
+    "@graphql-tools/merge": "^8.2.3",
+    "@graphql-tools/schema": "^8.3.2",
+    "@prisma/client": "^3.7.0",
+    "apollo-server": "^3.5.0",
+    "graphql": "^15.8.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.16.5",
+    "@babel/node": "^7.16.5",
+    "@babel/preset-env": "^7.16.5",
+    "prettier-plugin-prisma": "^3.7.0",
+    "prisma": "^3.7.0"
+  }
 }
