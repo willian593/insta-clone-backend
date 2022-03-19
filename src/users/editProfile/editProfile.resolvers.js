@@ -2,6 +2,7 @@ import bcrypt from 'bcrypt';
 import { GraphQLUpload } from 'graphql-upload';
 import { protectedResolver } from '../../helpers/user.utils';
 import client from './../../client';
+import { readFile } from './../../middleware/fileUpload';
 
 const resolverFn = async (
   _,
@@ -12,7 +13,7 @@ const resolverFn = async (
     if (!loggedInUser) {
       throw new Error('You need to login.');
     }
-    console.log(avatar);
+    readFile(avatar, loggedInUser);
     let uglyPassword = null;
     if (newpassword) {
       uglyPassword = await bcrypt.hash(newpassword, 10);
@@ -25,7 +26,6 @@ const resolverFn = async (
         username,
         email,
         bio,
-        avatar,
         ...(uglyPassword && { password: uglyPassword }),
       },
     });
