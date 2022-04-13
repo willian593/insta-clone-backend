@@ -22,31 +22,13 @@ async function startServer() {
   await server.start();
   const app = express();
   app.use(logger('tiny'));
+  app.use('/static', express.static('uploads'));
+
   app.use(graphqlUploadExpress());
   server.applyMiddleware({ app });
   await new Promise((r) => app.listen({ port: PORT }, r));
 
-  console.log(`🚀 Server ready at http://localhost:${PORT} ✅`);
+  console.log(`🚀 Server ready at http://localhost:${PORT}/graphql ✅`);
 }
 
 startServer();
-
-// const PORT = process.env.PORT;
-// const app = express();
-
-// const server = new ApolloServer({
-//   // schema,
-//   resolvers,
-//   typeDefs,
-//   context: async ({ req }) => {
-//     return {
-//       loggedInUser: await getUser(req.headers.token),
-//     };
-//   },
-// });
-
-// app.use(graphqlUploadExpress());
-
-// server.listen(PORT).then(() => {
-//   console.log(`🚀 Server ready at http://localhost:${PORT} ✅`);
-// });

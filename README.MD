@@ -7,18 +7,29 @@ InstaClone Backend
 - [x] Create Acoount
 - [x] See Profile
 - [x] Login
-- [] Edit Profile
-- [] Follow User
-- [] Unfollow User
-- [] Change Avanter (Image Upload)
+- [x] Edit Profile
+- [x] Change Avatar (Imagen Upload)
+- [x] Follow User
+- [x] Unfollow User
+- [x] See Followers
+- [x] See Following
+- [x] Pagination Followers and Following
+- [x] Computed Fields
+- [x] Search Users
 
 ## Photos
 
+- [x] Update Photo (Parse #)
 - [] See Photo
-- [] Update Photo
+- [] See Hashtags
+- [] Search Photos
 - [] Edit Photo
 - [] Like / Unlike Photo
 - [] See Photo Likes
 - [] See feed
-- [] Search Photos
-- [] See Hashtags
+
+## Comments
+
+- [] Commet on Photo
+- [] Edit Comment
+- [] Delete Comment

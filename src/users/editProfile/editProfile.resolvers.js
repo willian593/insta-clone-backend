@@ -1,8 +1,9 @@
 import bcrypt from 'bcrypt';
+import fs from 'fs';
 import { GraphQLUpload } from 'graphql-upload';
 import { protectedResolver } from '../../helpers/user.utils';
 import client from './../../client';
-import { readFile } from './../../middleware/fileUpload';
+import { readFile } from '../../middleware/uploadFileServer';
 
 const resolverFn = async (
   _,
@@ -13,7 +14,16 @@ const resolverFn = async (
     if (!loggedInUser) {
       throw new Error('You need to login.');
     }
-    readFile(avatar, loggedInUser);
+    let avatarUrl = null;
+    if (avatar) {
+      const { createReadStream, filename, mimetype, encoding } = await avatar;
+      const newFilename = `${loggedInUser.id}-${Date.now()}-${filename}`;
+      const readStream = createReadStream();
+      const url = `${process.cwd()}/uploads/${newFilename}`;
+      const writeStream = fs.createWriteStream(url);
+      await readStream.pipe(writeStream);
+      avatarUrl = `http://localhost:4000/static/${newFilename}`;
+    }
     let uglyPassword = null;
     if (newpassword) {
       uglyPassword = await bcrypt.hash(newpassword, 10);
@@ -27,6 +37,7 @@ const resolverFn = async (
         email,
         bio,
         ...(uglyPassword && { password: uglyPassword }),
+        ...(avatarUrl && { avatar: avatarUrl }),
       },
     });
     if ((await updatedUser).id) {

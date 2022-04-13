@@ -8,10 +8,18 @@ export const typeDefs = gql`
     lastName: String
     username: String!
     email: String!
+    createAt: String!
+    updateAt: String!
     password: String!
     bio: String!
     avatar: String!
-    createAt: String!
-    updateAt: String!
+    photos: [Photo]
+    following: [User]
+    followers: [User]
+    totalFollowing: Int!
+    totalFollowers: Int!
+    equalUsername: String!
+    isMe: Boolean!
+    isFollowing: Boolean!
   }
 `;
