@@ -1,3 +1,4 @@
+import { processHashtags } from '../../helpers/photos.utils';
 import { protectedResolver } from '../../helpers/user.utils';
 import client from './../../client';
 
@@ -9,7 +10,15 @@ const resolverFn = async (_, { id, caption }, { loggedInUser }) => {
         id,
         userId: loggedInUser.id,
       },
+      include: {
+        hashtags: {
+          select: {
+            hashtag: true,
+          },
+        },
+      },
     });
+    console.log(photo);
     // verificar si existe photo
     if (!photo) {
       return {
@@ -24,9 +33,15 @@ const resolverFn = async (_, { id, caption }, { loggedInUser }) => {
       },
       data: {
         caption,
+        hashtags: {
+          disconnect: photo.hashtags,
+          connectOrCreate: processHashtags(caption),
+        },
       },
     });
-    console.log(updatePhoto);
+    return {
+      ok: true,
+    };
   } catch (e) {
     return e;
   }
