@@ -10,7 +10,7 @@ export default {
       if (!ok) {
         return {
           ok: false,
-          error: 'User not found',
+          msg: 'User not found',
         };
       }
       const followers = await client.user

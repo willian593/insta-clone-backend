@@ -11,7 +11,7 @@ const resolverFn = async (_, { username }, { loggedInUser }) => {
   if (!ok) {
     return {
       ok: false,
-      error: 'That user does not exist. Cant follow',
+      msg: 'That user does not exist. Cant follow',
     };
   }
 

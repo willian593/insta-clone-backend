@@ -11,7 +11,7 @@ export default {
         if (!user) {
           return {
             ok: false,
-            error: 'User not found.',
+            msg: 'User not found.',
           };
         }
         //check password with args password
@@ -20,7 +20,7 @@ export default {
         if (!passwordOk) {
           return {
             ok: false,
-            error: 'Incorrect password.',
+            msg: 'Incorrect password.',
           };
         }
         // issue a token and send it to the user

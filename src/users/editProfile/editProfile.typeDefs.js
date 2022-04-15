@@ -5,7 +5,7 @@ export default gql`
 
   type EditProfileResult {
     ok: Boolean!
-    error: String
+    msg: String
   }
 
   type Mutation {

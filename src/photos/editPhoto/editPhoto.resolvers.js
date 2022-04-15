@@ -23,7 +23,7 @@ const resolverFn = async (_, { id, caption }, { loggedInUser }) => {
     if (!photo) {
       return {
         ok: false,
-        error: 'Photo not found',
+        msg: 'Photo not found',
       };
     }
     // update photo
@@ -61,6 +61,6 @@ export default {
 //   if (photo.userId !== loggedInUser.id) {
 //     return {
 //       ok: false,
-//       error: 'Photo not found',
+//       msg: 'Photo not found',
 //     };
 //   }

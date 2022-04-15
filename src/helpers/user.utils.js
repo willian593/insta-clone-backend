@@ -28,7 +28,7 @@ export function protectedResolver(ourResolver) {
       } else {
         return {
           ok: false,
-          error: 'Please log in to perform this action.',
+          msg: 'Please log in to perform this action.',
         };
       }
     }

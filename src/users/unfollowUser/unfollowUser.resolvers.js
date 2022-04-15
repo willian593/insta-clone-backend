@@ -11,7 +11,7 @@ const resolverFn = async (_, { username }, { loggedInUser }) => {
   if (!ok) {
     return {
       ok: false,
-      error: 'Cant unfollow user',
+      msg: 'Cant unfollow user',
     };
   }
 

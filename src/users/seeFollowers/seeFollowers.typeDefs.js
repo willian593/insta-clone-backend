@@ -3,7 +3,7 @@ import { gql } from 'apollo-server';
 export default gql`
   type SeeFollowerResult {
     ok: Boolean!
-    error: String
+    msg: String
     followers: [User]
     totalPages: Int
   }

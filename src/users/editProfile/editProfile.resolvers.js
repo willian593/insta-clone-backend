@@ -47,7 +47,7 @@ const resolverFn = async (
     } else {
       return {
         ok: false,
-        error: 'Could not update profile.',
+        msg: 'Could not update profile.',
       };
     }
   } catch (e) {
