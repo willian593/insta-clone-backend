@@ -61,8 +61,6 @@ export default {
   },
 };
 
-// see 4.27
-
 // const exists = await client.user
 // .findUnique({ where: { username: loggedInUser.username } })
 // .following({
