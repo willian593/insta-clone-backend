@@ -8,20 +8,21 @@ datasource db {
 }
 
 model User {
-  id        Int      @id @default(autoincrement())
+  id        Int       @id @default(autoincrement())
   firstName String
   lastName  String?
-  username  String   @unique
-  email     String   @unique
+  username  String    @unique
+  email     String    @unique
   password  String
   bio       String?
   avatar    String?
   photos    Photo[]
   Likes     Like[]
-  followers User[]   @relation("FollowRelation", references: [id])
-  following User[]   @relation("FollowRelation", references: [id])
-  createAt  DateTime @default(now())
-  updateAt  DateTime @updatedAt
+  followers User[]    @relation("FollowRelation", references: [id])
+  following User[]    @relation("FollowRelation", references: [id])
+  comments  Comment[]
+  createAt  DateTime  @default(now())
+  updateAt  DateTime  @updatedAt
 }
 
 model Photo {
@@ -32,6 +33,7 @@ model Photo {
   caption   String?
   hashtags  Hashtag[]
   Likes     Like[]
+  comments  Comment[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 }
@@ -55,6 +57,17 @@ model Like {
   updatedAt DateTime @updatedAt
 
   @@unique([photoId, userId])
+}
+
+model Comment {
+  id        Int      @id @default(autoincrement())
+  user      User     @relation(fields: [userId], references: [id])
+  photo     Photo    @relation(fields: [photoId], references: [id])
+  payload   String
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  userId    Int
+  photoId   Int
 }
 
 // !.- es requerido
