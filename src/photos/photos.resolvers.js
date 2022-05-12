@@ -20,6 +20,13 @@ export default {
     // counter like
     likes: ({ id }) => client.like.count({ where: { photoId: id } }),
     commentNumber: ({ id }) => client.comment.count({ where: { photoId: id } }),
+    // ver mis commentario
+    isMine: ({ userId }, _, { loggedInUser }) => {
+      if (!loggedInUser) {
+        return false;
+      }
+      return userId === loggedInUser.id;
+    },
   },
   Hashtag: {
     photos: ({ id }, { page }, { loggedInUser }) =>

@@ -3,14 +3,14 @@ import client from './../../client';
 
 const resolverFn = async (_, { id, payload }, { loggedInUser }) => {
   try {
-    // find photo
+    // find commnet
     const comment = await client.comment.findUnique({
       where: {
         id,
       },
     });
     // console.log(comment);
-    // verificar si existe foto
+    // verificar si existe commet
     if (!comment) {
       return {
         ok: false,
@@ -22,7 +22,7 @@ const resolverFn = async (_, { id, payload }, { loggedInUser }) => {
         ok: false,
         msg: 'Not authorized',
       };
-    } // udate comment
+    } // update comment
     else {
       await client.comment.update({
         where: {

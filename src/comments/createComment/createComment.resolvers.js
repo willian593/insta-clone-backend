@@ -16,7 +16,7 @@ export default {
         if (!ok) {
           return {
             ok: false,
-            error: 'Photo not found',
+            msg: 'Photo not found',
           };
         }
         // create comment
@@ -38,6 +38,7 @@ export default {
         return {
           ok: true,
           id: newComment.id,
+          msg: 'Se creo el comentario',
         };
       }
     ),

@@ -12,6 +12,7 @@ export default {
             createdAt: 'asc',
           },
         });
+        return comments;
         // return comments.map((comment) => comment.user);
       } catch (e) {
         return e;
