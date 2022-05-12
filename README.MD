@@ -34,11 +34,11 @@ InstaClone Backend
 
 - [x] Commet on Photo
 - [x] Delete Comment
-- [] Edit Comment
+- [x] Edit Comment
 
 ## Extras
 
-- [] Mutation Responses
+- [x] Mutation Responses
 
 ## Extras
 
