@@ -8,8 +8,10 @@ const resolverFn = async (_, { id, payload }, { loggedInUser }) => {
       where: {
         id,
       },
+      select: {
+        userId: true,
+      },
     });
-    // console.log(comment);
     // verificar si existe commet
     if (!comment) {
       return {
@@ -34,6 +36,7 @@ const resolverFn = async (_, { id, payload }, { loggedInUser }) => {
       });
       return {
         ok: true,
+        msg: 'Se modifico el comentario',
       };
     }
   } catch (e) {

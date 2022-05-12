@@ -1,12 +1,12 @@
 import { gql } from 'apollo-server';
 
 export default gql`
-  type EditProfileResult {
+  type EditCommentResult {
     ok: Boolean!
     msg: String
   }
 
   type Mutation {
-    editComment(id: Int!, payload: String!): EditProfileResult!
+    editComment(id: Int!, payload: String!): EditCommentResult!
   }
 `;
