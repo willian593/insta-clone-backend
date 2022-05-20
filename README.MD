@@ -42,4 +42,11 @@ InstaClone Backend
 
 ## Extras
 
--[] S3 Image Upload
+-[x] cloudinary Image Upload
+
+## DMS
+
+-[] Create Room
+-[] get Room
+-[] Send Message
+-[] Realtime Message

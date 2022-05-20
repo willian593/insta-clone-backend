@@ -1,4 +1,5 @@
 import { GraphQLUpload } from 'graphql-upload';
+import { uploadCloudinary } from '../../helpers/cloudinaryConfig';
 import { protectedResolver } from '../../helpers/user.utils';
 import client from './../../client';
 import { processHashtags } from './../../helpers/photos.utils';
@@ -13,10 +14,11 @@ export default {
           // parse caption
           hashtagObj = processHashtags(caption);
         }
-        // get or create hashtags
+        const fileUrl = await uploadCloudinary(file, 'uploads');
+        // create hashtags
         return client.photo.create({
           data: {
-            file,
+            file: fileUrl,
             caption,
             user: {
               connect: {

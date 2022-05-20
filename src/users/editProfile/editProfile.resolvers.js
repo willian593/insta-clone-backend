@@ -4,6 +4,7 @@ import { GraphQLUpload } from 'graphql-upload';
 import { protectedResolver } from '../../helpers/user.utils';
 import client from './../../client';
 import { readFile } from '../../middleware/uploadFileServer';
+import { uploadCloudinary } from './../../helpers/cloudinaryConfig';
 
 const resolverFn = async (
   _,
@@ -14,21 +15,22 @@ const resolverFn = async (
     if (!loggedInUser) {
       throw new Error('You need to login.');
     }
-    let avatarUrl = null;
+    let avatarUrl = String;
     if (avatar) {
-      const { createReadStream, filename, mimetype, encoding } = await avatar;
-      const newFilename = `${loggedInUser.id}-${Date.now()}-${filename}`;
-      const readStream = createReadStream();
-      const url = `${process.cwd()}/uploads/${newFilename}`;
-      const writeStream = fs.createWriteStream(url);
-      await readStream.pipe(writeStream);
-      avatarUrl = `http://localhost:4000/static/${newFilename}`;
+      avatarUrl = await uploadCloudinary(avatar, 'avatars');
+      // const { createReadStream, filename, mimetype, encoding } = await avatar;
+      // const newFilename = `${loggedInUser.id}-${Date.now()}-${filename}`;
+      // const readStream = createReadStream();
+      // const url = `${process.cwd()}/uploads/${newFilename}`;
+      // const writeStream = fs.createWriteStream(url);
+      // await readStream.pipe(writeStream);
+      // avatarUrl = `http://localhost:4000/static/${newFilename}`;
     }
     let uglyPassword = null;
     if (newpassword) {
       uglyPassword = await bcrypt.hash(newpassword, 10);
     }
-    const updatedUser = client.user.update({
+    const updatedUser = await client.user.update({
       where: { id: loggedInUser.id },
       data: {
         firstName,
@@ -40,9 +42,10 @@ const resolverFn = async (
         ...(avatarUrl && { avatar: avatarUrl }),
       },
     });
-    if ((await updatedUser).id) {
+    if (updatedUser.id) {
       return {
         ok: true,
+        msg: 'Imagen cargada correctamente',
       };
     } else {
       return {
