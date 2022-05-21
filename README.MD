@@ -44,9 +44,13 @@ InstaClone Backend
 
 -[x] cloudinary Image Upload
 
-## DMS
+## DMs
 
--[] Create Room
--[] get Room
--[] Send Message
--[] Realtime Message
+- [x] See Rooms
+- [x] Send Message (Create Room)
+- [] See Room
+- [] Computed Fields
+- [] See (Read) Message
+- [] Realtime Messages
+
+<!-- SEE 7.4 -->

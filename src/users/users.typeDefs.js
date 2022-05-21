@@ -3,7 +3,7 @@ import { gql } from 'apollo-server';
 // The GraphQL schema User
 export const typeDefs = gql`
   type User {
-    id: String!
+    id: Int!
     firstName: String!
     lastName: String
     username: String!

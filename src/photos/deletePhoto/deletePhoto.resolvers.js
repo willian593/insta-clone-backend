@@ -21,7 +21,7 @@ const resolverFn = async (_, { id }, { loggedInUser }) => {
     } else if (photoId.userId !== loggedInUser.id) {
       return {
         ok: false,
-        error: 'Not authorized.',
+        msg: 'Not authorized.',
       };
     } else {
       await client.photo.delete({

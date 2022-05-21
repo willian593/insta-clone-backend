@@ -20,7 +20,7 @@ const resolverFn = async (_, { id }, { loggedInUser }) => {
     } else if (commentId.userId !== loggedInUser.id) {
       return {
         ok: false,
-        error: 'Not authorized.',
+        msg: 'Not authorized.',
       };
     } else {
       await client.comment.delete({
