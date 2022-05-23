@@ -48,9 +48,9 @@ InstaClone Backend
 
 - [x] See Rooms
 - [x] Send Message (Create Room)
-- [] See Room
-- [] Computed Fields
-- [] See (Read) Message
+- [x] See Room
+- [x] Computed Fields
+- [x] See (Read) Message
 - [] Realtime Messages
 
 <!-- SEE 7.4 -->
