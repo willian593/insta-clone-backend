@@ -20,6 +20,7 @@ async function startServer() {
   });
 
   await server.start();
+
   const app = express();
   app.use(logger('tiny'));
   app.use('/static', express.static('uploads'));

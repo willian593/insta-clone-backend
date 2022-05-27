@@ -1,21 +1,20 @@
 import { protectedResolver } from '../../helpers/user.utils';
-import client from './../../client';
+import client from '../../client';
 
 export default {
   Query: {
-    seeRoom: protectedResolver((_, { id }, { loggedInUser }) => {
+    seeComments: protectedResolver(async (_, __, { loggedInUser }) => {
       try {
-        const room = client.room.findFirst({
+        const Profiles = await client.user.findMany({
           where: {
-            id,
-            users: {
+            comments: {
               some: {
                 id: loggedInUser.id,
               },
             },
           },
         });
-        return room;
+        return Profiles;
       } catch (e) {
         return e;
       }

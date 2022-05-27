@@ -38,6 +38,7 @@ export default {
       });
       return {
         ok: true,
+        msg: 'the message was read',
       };
     }),
   },

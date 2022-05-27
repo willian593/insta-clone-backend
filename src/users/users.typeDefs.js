@@ -16,6 +16,7 @@ export const typeDefs = gql`
     photos: [Photo]
     following: [User]
     followers: [User]
+    comments: [Comment]
     totalFollowing: Int!
     totalFollowers: Int!
     equalUsername: String!

@@ -53,4 +53,4 @@ InstaClone Backend
 - [x] See (Read) Message
 - [] Realtime Messages
 
-<!-- SEE 7.4 -->
+<!-- SEE 7.7 -->

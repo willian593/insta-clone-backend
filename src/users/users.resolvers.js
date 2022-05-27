@@ -49,6 +49,7 @@ export default {
     },
 
     photos: ({ id }) => client.user.findUnique({ where: { id } }).photos(),
+    comments: ({ id }) => client.user.findUnique({ where: { id } }).comments(),
 
     equalUsername: ({ firstName }) =>
       client.user.count({

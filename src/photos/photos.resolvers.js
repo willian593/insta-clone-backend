@@ -29,7 +29,7 @@ export default {
     },
   },
   Hashtag: {
-    photos: ({ id }, { page }, { loggedInUser }) =>
+    photos: ({ id }) =>
       // console.log(args),
       client.hashtag
         .findUnique({

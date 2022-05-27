@@ -17,14 +17,14 @@ model User {
   bio       String?
   avatar    String?
   photos    Photo[]
-  Likes     Like[]
+  likes     Like[]
   followers User[]    @relation("FollowRelation", references: [id])
   following User[]    @relation("FollowRelation", references: [id])
   comments  Comment[]
   rooms     Room[]
+  Message   Message[]
   createAt  DateTime  @default(now())
   updateAt  DateTime  @updatedAt
-  Message   Message[]
 }
 
 model Photo {
@@ -34,10 +34,10 @@ model Photo {
   file      String
   caption   String?
   hashtags  Hashtag[]
+  likes     Like[]
+  comments  Comment[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
-  Likes     Like[]
-  comments  Comment[]
 }
 
 model Hashtag {
@@ -75,7 +75,7 @@ model Comment {
 model Room {
   id        Int       @id @default(autoincrement())
   users     User[]
-  Message   Message[]
+  Messages  Message[]
   createdAt DateTime  @default(now())
   updatedAt DateTime  @updatedAt
 }
